@@ -5,6 +5,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ListCell: UICollectionViewCell {
     
@@ -44,6 +45,28 @@ class ListCell: UICollectionViewCell {
        let chevronImage = UIImage(systemName: chevronImageName)
        accessoryImageView.image = chevronImage
        accessoryImageView.tintColor = .lightGray.withAlphaComponent(0.7)
+       
+       //MARK: - Set constraints
+       let offset: CGFloat = 10
+       label.snp.makeConstraints { make in
+           make.leading.top.equalToSuperview().inset(offset)
+           make.bottom.equalToSuperview().inset(-offset)
+           make.trailing.equalTo(accessoryImageView.snp.leading).inset(-offset)
+       }
+       
+       accessoryImageView.snp.makeConstraints { make in
+           make.centerY.equalToSuperview()
+           make.width.equalTo(13)
+           make.height.equalTo(20)
+           make.trailing.equalToSuperview().inset(-offset)
+       }
+       
+       separatorView.snp.makeConstraints { make in
+           make.leading.equalToSuperview().inset(offset)
+           make.bottom.equalToSuperview()
+           make.trailing.equalToSuperview().inset(-offset)
+           make.height.equalTo(0.5)
+       }
    }
     
 }

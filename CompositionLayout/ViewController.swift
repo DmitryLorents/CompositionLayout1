@@ -107,8 +107,9 @@ class ViewController: UIViewController {
     }
     
     private func configureDataSource() {
+        
         //create diffable data source and connect to collection view
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, itemIdentifier) in
+        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.reuseIdentifier, for: indexPath) as? ListCell else {
                 fatalError("Cannot create new cell")
                 return}
@@ -121,6 +122,7 @@ class ViewController: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(0..<94))
         dataSource.apply(snapshot, animatingDifferences: false)
+        
     }
+    
 }
-
